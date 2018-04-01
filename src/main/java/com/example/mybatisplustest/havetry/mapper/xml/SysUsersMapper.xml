@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisplustest.havetry.mapper.SysUsersMapper">
+
+  <!-- 通用查询映射结果 -->
+  <resultMap id="BaseResultMap" type="com.example.mybatisplustest.havetry.entity.SysUsers">
+    <id column="id" property="id"/>
+    <result column="username" property="username"/>
+    <result column="password" property="password"/>
+    <result column="salt" property="salt"/>
+    <result column="locked" property="locked"/>
+  </resultMap>
+
+  <select id="selectUsersByUserName" resultType="com.example.mybatisplustest.havetry.entity.SysUsers">
+    select * FROM sys_users where username=#{username}
+    </select>
+
+
+  <select id="selectRoleByUserId" resultType="Integer">
+    SELECT role_id from sys_users_roles where user_id =#{userID}
+</select>
+
+  <select id="selectRolesByRoleId" resultType="String">
+    SELECT * from sys_roles where id = #{roleID}
+  </select>
+
+</mapper>
