@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @author lisiyang
  * @since 2018-03-31
  */
+@Component
 public interface SysUsersMapper extends BaseMapper<SysUsers> {
 
   /**
@@ -24,4 +25,6 @@ public interface SysUsersMapper extends BaseMapper<SysUsers> {
   Set<Integer> selectRoleByUserId(Integer userId);
 
   String selectRolesByRoleId(Integer roleId);
+
+  Set<String> selectPermissionByUserName(String userName);
 }

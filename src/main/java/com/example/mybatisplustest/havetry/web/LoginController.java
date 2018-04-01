@@ -30,24 +30,28 @@ public class LoginController {
     String msg = "";
     UsernamePasswordToken token = new UsernamePasswordToken(username, password);
     Subject subject = SecurityUtils.getSubject();
+    System.out.println("666666-----" + UnknownAccountException.class.getName());
     try {
       subject.login(token);
       request.getSession().setAttribute("username", username);
       request.getSession().setAttribute("password", password);
       return SystemResult.isOk();
     } catch (AuthenticationException exception) {
-      if (UnknownAccountException.class.getName().equals(exception)) {
-        System.out.println("UnknownAccountException -- > 用户名或密码错误：");
-        msg = "用户名或密码错误：";
-      } else if (IncorrectCredentialsException.class.getName().equals(exception)) {
-        System.out.println("IncorrectCredentialsException -- > 用户名或密码错误：");
-        msg = "用户名或密码错误：";
-      } else if (LockedAccountException.class.getName().equals(exception)) {
+      String[] strs = exception.toString().split(":");
+      // System.err.println("++" + IncorrectCredentialsException.class.getName());
+      //System.err.println("--" + strs[0]);
+      if (UnknownAccountException.class.getName().equals(strs[0])) {
+        System.out.println("UnknownAccountException -- > 用户名或密码错误");
+        msg = "用户名或密码错误";
+      } else if (IncorrectCredentialsException.class.getName().equals(strs[0])) {
+        System.out.println("IncorrectCredentialsException -- > 用户名或密码错误");
+        msg = "用户名或密码错误";
+      } else if (LockedAccountException.class.getName().equals(strs[0])) {
         System.out.println("kaptchaValidateFailed -- > 账户被锁定");
         msg = "账户被锁定";
       } else {
         msg = "else >> " + exception;
-        System.out.println("其他错误" + exception);
+        System.out.println("其他错误" + exception.toString());
       }
     }
     return SystemResult.result(msg, 201);

@@ -1,38 +1,54 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
-
 <head>
-    <title>登陆界面</title>
-    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/loginPage.css}"/>
-    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery.form.js}"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>欢迎界面</title>
+  <link th:href="@{/bootstrap_3.3.0/css/bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+  <script type="text/javascript" th:src="@{/JQ/jquery-1.11.1-min.js}"></script>
+  <script type="text/javascript" th:src="@{/JQ/jquery.form.js}"></script>
+  <script type="text/javascript" th:src="@{/bootstrap_3.3.0/js/bootstrap.min.js}"></script>
+  <script type="text/javascript"></script>
 </head>
 <body>
-<form id="loginPageForm">
-    <table>
-        <tbody>
-        <tr>
-            <P>WELCOME <span th:text="${username}"></span> to main page </P>
-            <P>EMPNO <span th:text="${password}"></span></P>
-        </tr>
-        <tr>
-            <td><input th:type="button" id="loginBtn" th:value="确定"/></td>
-            <td><input th:type="button" onclick="cancelLogin()" th:value="取消"/></td>
-        </tr>
+<h5>这是通过shiro标签的方式;</h5>
+<p shiro:hasRole="admin">
+  <a>管理员角色</a>
+</p>
 
-            <ul>
-                <shiro:hasPermission name="add"><li>增加</li></shiro:hasPermission>
-                <shiro:hasPermission name="delete"><li>删除</li></shiro:hasPermission>
-                <shiro:hasPermission name="update"><li>修改</li></shiro:hasPermission>
-                <shiro:hasPermission name="query"><li>查询</li></shiro:hasPermission>
-            </ul>
-            <a href="${pageContext.request.contextPath }/logOut">点我注销</a>
+<p shiro:hasPermission="query">
+  <a href="/userInfo/userList">查询</a>
+</p>
+<p shiro:hasPermission="add">
+  <a href="/userInfo/userAdd">添加</a>
+</p>
+<!--<div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;">
+  <img th:src="@{images/3.gif}" style="width: 100%; height: 90%; position: relative; top: 50px;">
+</div>-->
+<!--<div th:id="top" style="height: 50px; background-color: #3C3C3C; width: 100%;">
+  <div
+      style="position: absolute; top: 5px; left: 0px; font-size: 30px; font-weight: 400; color: white; font-family: 'times new roman'">
+    欢迎 <span th:text="${username}"></span> &nbsp;<span
+      style="font-size: 12px;">&copy;2018&nbsp;XXXX</span></div>
+</div>-->
 
-        </tbody>
-    </table>
-</form>
+<!--   <ul>
+     <shiro:hasPermission name="add">
+       <li>增加</li>
+     </shiro:hasPermission>
+     <shiro:hasPermission name="delete">
+       <li>删除</li>
+     </shiro:hasPermission>
+     <shiro:hasPermission name="update">
+       <li>修改</li>
+     </shiro:hasPermission>
+     <shiro:hasPermission name="query">
+       <li>查询</li>
+     </shiro:hasPermission>
+   </ul>-->
+<!-- <a href="${pageContext.request.contextPath }/logOut">点我注销</a>-->
+
+
 </body>
 
 

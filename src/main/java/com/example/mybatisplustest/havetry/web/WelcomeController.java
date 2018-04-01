@@ -22,7 +22,6 @@ public class WelcomeController {
   public String mPage(HttpServletRequest request, Model model) {
     String sessionValue = (String) request.getSession().getAttribute("username");
     String sessionValue2 = (String) request.getSession().getAttribute("password");
-    /*System.out.println("session ENAME" + sessionValue);*/
     model.addAttribute("username", sessionValue);
     model.addAttribute("password", sessionValue2);
     return "mPage";

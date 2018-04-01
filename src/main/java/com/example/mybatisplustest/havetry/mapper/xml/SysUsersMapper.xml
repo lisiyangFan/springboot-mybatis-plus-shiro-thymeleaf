@@ -12,7 +12,8 @@
     <result column="locked" property="locked"/>
   </resultMap>
 
-  <select id="selectUsersByUserName" resultType="com.example.mybatisplustest.havetry.entity.SysUsers">
+  <select id="selectUsersByUserName"
+    resultType="com.example.mybatisplustest.havetry.entity.SysUsers">
     select * FROM sys_users where username=#{username}
     </select>
 
@@ -22,7 +23,15 @@
 </select>
 
   <select id="selectRolesByRoleId" resultType="String">
-    SELECT * from sys_roles where id = #{roleID}
+    SELECT role from sys_roles where id = #{roleID}
   </select>
 
+  <select id="selectPermissionByUserName" resultType="String">
+    select p.permission
+    from sys_users u
+    LEFT JOIN sys_users_roles ur on u.id = ur.user_id
+    left join sys_roles_permissions rp on ur.role_id = rp.role_id
+    left join sys_permissions p on rp.permission_id = p.id
+    where u.username = #{username}
+  </select>
 </mapper>

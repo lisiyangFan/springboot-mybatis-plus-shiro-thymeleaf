@@ -35,8 +35,18 @@ public class SysUsersServiceImpl extends ServiceImpl<SysUsersMapper, SysUsers> i
 
     Set<Integer> rolesId = sysUsersMapper.selectRoleByUserId(sysUsers.getId());
     for (Integer roleId : rolesId) {
+      System.out.println("------------------------roles: " + sysUsersMapper.selectRolesByRoleId(roleId));
       rolesSet.add(sysUsersMapper.selectRolesByRoleId(roleId));
     }
     return rolesSet;
+  }
+
+  @Override
+  public Set<String> selectPermission(String userName) {
+    Set<String> permissionSet = sysUsersMapper.selectPermissionByUserName(userName);
+    for (String permission : permissionSet) {
+      System.err.println("permission : " + permission);
+    }
+    return permissionSet;
   }
 }

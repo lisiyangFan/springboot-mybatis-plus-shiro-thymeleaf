@@ -3,6 +3,7 @@ package com.example.mybatisplustest.havetry.service;
 import com.example.mybatisplustest.havetry.entity.SysUsers;
 import com.baomidou.mybatisplus.service.IService;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * <p>
@@ -20,5 +21,7 @@ public interface ISysUsersService extends IService<SysUsers> {
    */
   SysUsers selectUsersByUserName(String username);
 
-  Collection<String> selectRoles(String userName);
+  Set<String> selectRoles(String userName);
+
+  Set<String> selectPermission(String userName);
 }

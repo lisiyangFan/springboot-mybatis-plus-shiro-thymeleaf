@@ -45,13 +45,13 @@ public class shiroConfiguration {
     filterChainDefinitionMap.put("/addUserPage", "anon");
     filterChainDefinitionMap.put("/login.do", "anon");
     filterChainDefinitionMap.put("/register.do", "anon");
-    filterChainDefinitionMap.put("/mPage", "anon");
 
     // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
     filterChainDefinitionMap.put("/logout", "logout");
 
     //配置某个url需要某个权限码
-    // filterChainDefinitionMap.put("/hello", "perms[how_are_you]");
+    filterChainDefinitionMap.put("/mPage", "roles[aaa]");
+
 
     // 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边
     // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->

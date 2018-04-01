@@ -3,6 +3,8 @@ package com.example.mybatisplustest.shiro;
 
 import com.example.mybatisplustest.havetry.entity.SysUsers;
 import com.example.mybatisplustest.havetry.service.ISysUsersService;
+import java.util.Collection;
+import java.util.Set;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -16,7 +18,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.SocketUtils;
 
 public class MyRealm extends AuthorizingRealm {
 
@@ -26,13 +27,13 @@ public class MyRealm extends AuthorizingRealm {
   @Override
   protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
-/*
     String userName = (String) principalCollection.getPrimaryPrincipal();
     SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-    simpleAuthorizationInfo.addRoles(sysUsersService.selectRoles(userName));
-*/
+   // Set<String> roles = sysUsersService.selectRoles(userName);
+    simpleAuthorizationInfo.setRoles(sysUsersService.selectRoles(userName));
+    simpleAuthorizationInfo.setStringPermissions(sysUsersService.selectPermission(userName));
 
-    return null;
+    return simpleAuthorizationInfo;
   }
 
   @Override
@@ -48,6 +49,7 @@ public class MyRealm extends AuthorizingRealm {
     }
 
     if ((sysUsers.getLocked()) == 1) {
+      System.err.println("帐号锁定");
       throw new LockedAccountException(); //帐号锁定
     }
 
