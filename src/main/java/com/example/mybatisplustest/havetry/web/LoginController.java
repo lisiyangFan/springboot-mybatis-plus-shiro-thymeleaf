@@ -21,11 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
   @RequestMapping("/login.do")
-  public SystemResult Login(
-      @Param("username") String username,
-      @Param("password") String password,
-      HttpServletRequest request) {
-
+  public SystemResult Login(String username, String password, HttpServletRequest request) {
     System.out.println("进入到登录操作");
     String msg = "";
     UsernamePasswordToken token = new UsernamePasswordToken(username, password);
