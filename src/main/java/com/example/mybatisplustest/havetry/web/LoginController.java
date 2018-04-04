@@ -4,9 +4,9 @@ package com.example.mybatisplustest.havetry.web;
 
 
 import com.example.mybatisplustest.vo.SystemResult;
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -17,9 +17,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(value="登录Controller")
 @RestController
 public class LoginController {
-
+ @ApiOperation(value = "Login",notes = "登录")
   @RequestMapping("/login.do")
   public SystemResult Login(String username, String password, HttpServletRequest request) {
     System.out.println("进入到登录操作");

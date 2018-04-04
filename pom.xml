@@ -11,20 +11,16 @@
 
   <name>mybatis-plus-test</name>
   <description>Demo project for Spring Boot</description>
-
+  <properties>
+    <springfox-swagger2.version>2.7.0</springfox-swagger2.version>
+    <springfox-swagger-ui.version>2.7.0</springfox-swagger-ui.version>
+  </properties>
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.5.10.RELEASE</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -118,6 +114,26 @@
       <version>1.3.2</version>
     </dependency>
 
+<!--   swagger依赖开始-->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>2.7.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>2.7.0</version>
+    </dependency>
+<!--    swagger依赖结束-->
+  <!--  &lt;!&ndash; swagger2-spring-boot-starter &ndash;&gt;
+    <dependency>
+      <groupId>com.k4hub</groupId>
+      <artifactId>swagger2-spring-boot-starter</artifactId>
+      <version>1.0-RELEASE</version>
+    </dependency>-->
+
   </dependencies>
 
   <build>
@@ -140,13 +156,6 @@
         <directory>src/main/java</directory>
         <filtering>true</filtering>
       </resource>
-    <!--  <resource>
-        <directory>src/main/java</directory>
-        <filtering>false</filtering>
-        <includes>
-          <include>**/mapper/*.xml</include>
-        </includes>
-      </resource>-->
     </resources>
   </build>
 

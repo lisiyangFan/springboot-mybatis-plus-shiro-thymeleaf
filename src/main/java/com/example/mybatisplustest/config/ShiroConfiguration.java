@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class shiroConfiguration {
+public class ShiroConfiguration {
 
 
   /**
@@ -43,6 +43,18 @@ public class shiroConfiguration {
     filterChainDefinitionMap.put("/images/**", "anon");
     filterChainDefinitionMap.put("/JQ/**", "anon");
     filterChainDefinitionMap.put("/addUserPage", "anon");
+    filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+    //filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
+//    filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/css/**", "anon");
+//    filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/lib/**", "anon");
+//    filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/lang/**", "anon");
+//    filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/images/**", "anon");
+//    filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/fonts/**", "anon");
+//    filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/*.js", "anon");
+    filterChainDefinitionMap.put("/webjars/**", "anon");
+    filterChainDefinitionMap.put("/swagger-resources/**", "anon");
+    filterChainDefinitionMap.put("/v2/**", "anon");
+
     filterChainDefinitionMap.put("/login.do", "anon");
     filterChainDefinitionMap.put("/register.do", "anon");
 
@@ -50,8 +62,7 @@ public class shiroConfiguration {
     filterChainDefinitionMap.put("/logout", "logout");
 
     //配置某个url需要某个权限码
-    filterChainDefinitionMap.put("/mPage", "roles[aaa]");
-
+    // filterChainDefinitionMap.put("/mPage", "roles[aaa]");
 
     // 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边
     // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
